@@ -1,6 +1,6 @@
 Moving to LFS does not have to be hard! The Windows batch script below can be used to migrate one file format at a time. Simply create a batch file with the source below inside the root of your repository, and call it as follows: `MyBatchFile.bat exe`, in order to move all ".exe" files to LFS!
 
-    $ SET file_extension=%~1
+    SET file_extension=%~1
     :: Remove all the desired files from VCS, but keep them locally
     git rm --cached "*.%file_extension%"
     git commit -m "Removed %file_extension% format from the repository"
