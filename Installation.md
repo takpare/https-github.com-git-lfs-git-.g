@@ -6,11 +6,11 @@
 
 ## Installing ##
 
-### RHEL/Centos ###
-
 ### Debian/Ubuntu ###
 
 ### Mac OSX ###
+
+### RHEL/Centos ###
 
 ### Windows ###
 
