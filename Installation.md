@@ -62,6 +62,10 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
 
 ### Windows ###
 
+1. Download the windows installer from [here](https://github.com/github/git-lfs/releases)
+2. Run the windows installer 
+3. Start a command prompt/or git for windows prompt and run `git lfs install`
+
 ## Other ##
 
 To install on any supported operating system, manually install git-lfs with no man pages.
