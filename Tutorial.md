@@ -31,6 +31,7 @@ The quotes around the `*.bin` are there to prevent the shell from expanding `*.b
 * cloning
 * pulling as clone, pulling after clone, etc...
 * pulling missed files `git checkout .`, `git lfs ls-files` shows `-` for missing pulled files(smudged), and `*` for pulled files(cleaned)
+* Credential caching/storage
 
 ## Looking at the point
 
