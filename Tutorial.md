@@ -54,5 +54,5 @@ TODO
 10. For all the patterns
 11. `git add .gitattributes`
 12. `git commit -m "Added .gitattributes for lfs tracking"`
-13. Final step, `git push origin --all --tags -f`. The `-f` is the important point of no return. This pushes a DIFFERENT repo now. Anyone else out there who has a clone, will have the broken clone, and will need to re-clone the new better lfs version.
+13. Final step, `git push origin --all -f` and `git push origin --tags -f`. The `-f` is the important point of no return. This pushes a DIFFERENT repo now. Anyone else out there who has a clone, will have the broken clone, and will need to re-clone the new better lfs version.
 14. Don't be alarmed that `git status` shows all your files as different. This is a common git issue where the index is confused. It can be fixed by.... Well, not sure the best way. Throw away the clone, and clone again is one way, checkout initial commit and then go back is another (this only works if none of the affected files exist in the initial commit). Both of these are BAD solutions. The best way is _____?
