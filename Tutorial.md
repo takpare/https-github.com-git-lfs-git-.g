@@ -91,12 +91,12 @@ git config filter.lfs.smudge = "git-lfs smudge %f"
 git config filter.lfs.clean = "git-lfs clean %f"
 ```
 
-The endpoint identifies the server URL the lfs objects are sent to. When using an external server like [lfs-test-server](https://github.com/github/lfs-test-server), you need to override the default URL to point to your external URL. This can be done using `git config lfs.url = "https://my_other_server.example.com/foo/bar/info/lfs"`, however this modifies the `.git/config` file, which is a local git file, and cannot be added to your git repository. To get around this, git-lfs will also use a custom `.lfsconfig` files.
+The endpoint identifies the server URL the lfs objects are sent to. When using an external server like [lfs-test-server](https://github.com/github/lfs-test-server), you need to override the default URL to point to your external URL. This can be done using `git config lfs.url = "https://my_other_server.example.com/foo/bar/info/lfs"`, however this modifies the `.git/config` file, which is a local git file, and cannot be added to your git repository. To get around this, git-lfs will also use a custom `.lfsconfig` file.
 
     git config -f .lfsconfig lfs.url https://my_other_server.example.com/foo/bar/info/lfs
     git add .lfsconfig
 
-Now, `git lfs env` show 
+Now, `git lfs env` shows: 
 
 ```
 git-lfs/1.1.1 (GitHub; windows amd64; go 1.5.3; git 7de0397)
@@ -110,12 +110,12 @@ Endpoint=https://my_other_server.example.com/foo/bar/info/lfs (auth=none)
 
 ## Credential caching/storage ##
 
-Since git-lfs only supports http/https, git will need to authenticate over http/https when pushing files, even if you are using ssh/git protocol for git. Without the a credential helper, you will be asked to enter your username and password for EVERY connection, which is pretty unusable. To get around this, git [credential](https://git-scm.com/docs/git-credential-cache) helpers will handing password for you.
+Since git-lfs only supports http/https, git will need to authenticate over http/https when pushing files, even if you are using ssh/git protocol for git. Without the credential helper, you will be asked to enter your username and password for EVERY connection, which is pretty unusable. To get around this, git [credential](https://git-scm.com/docs/git-credential-cache) helpers will help handling passwords for you.
 
 - Linux - [Cacher](https://help.github.com/articles/caching-your-github-password-in-git/#platform-linux) will store the passwords in memory so you only have to enter the password once until the session timesout (usually 900 seconds)
 - Mac - [osxkeychain](https://help.github.com/articles/caching-your-github-password-in-git/#platform-mac) to use the osx keychain for your password.
 - Windows - [wincred](https://help.github.com/articles/caching-your-github-password-in-git/#platform-windows) is the default built in for windows and should be good for most uses. There is another helper you can use called the [Git Credential Manager for Windows](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) aka wincred, the successor of the old winstore helper. It has some extra authentication support for GitHub and VSTS.
-- Store - The final option is use store your username and password using the [store](https://git-scm.com/docs/git-credential-store) helper. This should only be used when no other option is available (such as automatic private builds on trusted server) 
+- Store - The final option is to store your username and password using the [store](https://git-scm.com/docs/git-credential-store) helper. This should only be used when no other option is available (such as automatic private builds on trusted server) 
 
 ## Adding git-lfs to a pre-exiting repo  ##
 
@@ -147,20 +147,24 @@ git tag four
 
 Now lets decide we want `*.bin` files to be turned into lfs objects. 
 
-    git lfs track '*.bin'
-    git add .gitattributes
-    git commit -m "Now tracking bin files"
-    git tag not_working
+```
+git lfs track '*.bin'
+git add .gitattributes
+git commit -m "Now tracking bin files"
+git tag not_working
+```
 
-Just tracking files does NOT convert them to lfs. They are part of history already, the only way to that convert old files is to rewrite history (See [BFG}(#using-bfg-to-migrate-repo)).
+Just tracking files does NOT convert them to lfs. They are part of history already, the only way to convert old files is to rewrite history (See [BFG}(#using-bfg-to-migrate-repo)).
 
 Next we can try converting the latest version of history only to LFS. Since `*.bin` are currently tracked, we just need to add the files back after removing them. We will remove it from git without deleting the file (aka remove cache), and then add it back
 
-    git rm --cached *.bin
-    git add *.bin
-    git commit -m "Convert last commit to LFS"
+```
+git rm --cached *.bin
+git add *.bin
+git commit -m "Convert last commit to LFS"
+```
 
-Now `git lfs ls-files` shows
+Now, `git lfs ls-files` shows:
 
 ```
 4665a5ea42 * bar.bin
@@ -184,19 +188,19 @@ plain.txt
 README.md
 ```
 
-It's important to understand that tracking an LFS file does not remove it from a previous version of history. If you create a repo without LFS before, and put hundreds of MB in there, after all these steps, the old version still has all the large files in git, not in LFS. There is a discussion on how to rewrite history [here](https://github.com/github/git-lfs/issues/326), but the general consensus is using [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner/releases) is the best path forward. See the next section on how to do this.
+It's important to understand that tracking an LFS file does not remove it from a previous version of history. If you create a repo without LFS before, and put hundreds of MB in there, after all these steps, the old version still has all the large files in git, not in LFS. There is a discussion on how to rewrite history [here](https://github.com/github/git-lfs/issues/326), but the general consensus is that using [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner/releases) is the best path forward. See the next section on how to do this.
 
 ## Using BFG to migrate repo ##
 
 1. Download and install `java >= 6`
-2. Download bfg [here](https://rtyley.github.io/bfg-repo-cleaner/#download) and put it somewhere
+2. Download `bfg` [here](https://rtyley.github.io/bfg-repo-cleaner/#download) and put it somewhere
 3. `cd {git repo}`
 4. `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.dll' --no-blob-protection`
 5. `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.exe' --no-blob-protection`
 6. And so on, one pattern at a time. This is the current recommendation.
 7. `.gitattributes` are not generated through out history... So the best bet is to start tracking on the newest version only. This WILL go bad if you go to a previous version of history, branch off, commit, as LFS track files will not know to track at that point. I guess this would have to be fixed via ` git-filter-branch`
 8. `git lfs track '*.dll'` '*.exe'`
-10. For all the patterns
+10. For all the patterns:
 11. `git add .gitattributes`
 12. `git commit -m "Added .gitattributes for lfs tracking"`
 12. `git reflog expire --expire=now --all`
@@ -210,13 +214,13 @@ TODO:
 
 * Push
 * Pushing missing files `git lfs push origin master --all`
-* cloning
-* pulling as clone, pulling after clone, etc...
-* pulling missed files `git checkout .`, `git lfs ls-files` shows `-` for missing pulled files(smudged), and `*` for pulled files(cleaned)
+* Cloning
+* Pulling as clone, pulling after clone, etc...
+* Pulling missed files `git checkout .`, `git lfs ls-files` shows `-` for missing pulled files(smudged), and `*` for pulled files(cleaned)
 
 ## LFS pointer files (Advanced) ##
 
-Git LFS stores a pointer file in the git repo in lieu of the real large file. The pointer is swapped out for the real file at checkout (use smudge and clean). Normally, you would never see it, but for the curious, you can view the pointer file by `git show HEAD:{filename}`, for example:
+Git LFS stores a pointer file in the git repo in lieu of the real large file. The pointer is swapped out for the real file at checkout (using `smudge` and `clean`). Normally, you would never see it, but for the curious, you can view the pointer file by `git show HEAD:{filename}`, for example:
 
 `cat cat.bin`
 
@@ -237,13 +241,13 @@ You can also create any pointer you want, `cat dog.bin | git lfs clean`
     oid sha256:7db207c488a5957f0b88aec97489a60e73f2b8d310586c2502f3388af7f76091
     size 42
 
-Running `git lfs clean` like this, also creates a new lfs object for every clean. Not sure why you'd want to. For example: `echo hi | git lfs clean`
+Running `git lfs clean` like this, also creates a new lfs object for every clean. Not sure why you'd want to. For example: `echo hi | git lfs clean`:
 
     version https://git-lfs.github.com/spec/v1
     oid sha256:98ea6e4f216f2fb4b69fff9b3a44842c38686ca685f3f55dc48c5d3fb1107be4
     size 3
 
-Now `ls .git/lfs/objects/98/ea` shows
+Now, `ls .git/lfs/objects/98/ea` shows:
 
     98ea6e4f216f2fb4b69fff9b3a44842c38686ca685f3f55dc48c5d3fb1107be4
 
