@@ -79,7 +79,7 @@ Only one file is required for git-lfs, the `git-lfs` binary. i386 and x86_64 ver
 
 1. Get go. Either use your OS repo or get it [here](https://golang.org/dl/). For best results, use latest stable go to get all the patches
 2. `git clone https://github.com/github/git-lfs.git`
-3. In the git-lfs directory, run `./scripts/bootstrap`
+3. In the git-lfs directory, run `./script/bootstrap`
 4. The git-lfs binary should appear in the `./bin` directory
 
 Alternatively, you can use go to
