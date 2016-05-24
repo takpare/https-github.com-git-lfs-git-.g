@@ -192,6 +192,8 @@ It's important to understand that tracking an LFS file does not remove it from a
 
 ## Using BFG to migrate repo ##
 
+# Don't use this, Use https://github.com/bozaro/git-lfs-migrate instead
+
 1. Download and install `java >= 6`
 2. Download `bfg` [here](https://rtyley.github.io/bfg-repo-cleaner/#download) and put it somewhere
 3. `cd {git repo}`
