@@ -219,6 +219,7 @@ TODO:
 * Cloning
 * Pulling as clone, pulling after clone, etc...
 * Pulling missed files `git checkout .`, `git lfs ls-files` shows `-` for missing pulled files(smudged), and `*` for pulled files(cleaned)
+* Pulling all LFS objects (to conveniently work offline) `git lfs fetch --all`, there is also a `--recent` flag to only fetch the last few days. See `git lfs fetch --help` for more details
 
 ## LFS pointer files (Advanced) ##
 
