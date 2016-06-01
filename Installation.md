@@ -35,7 +35,7 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
     - Recommended method for RHEL/CentOS 5 and 7 (not 6!)
 
         1. Install the epel repo [link](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) (For CentOS it's just `yum install epel-release`)
-        2. `yum install git`
+        2. `yum install git-lfs`
 
     - Recommended method for RHEL/CentOS 6
 
