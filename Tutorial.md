@@ -154,7 +154,7 @@ git commit -m "Now tracking bin files"
 git tag not_working
 ```
 
-Just tracking files does NOT convert them to lfs. They are part of history already, the only way to convert old files is to rewrite history (See [BFG}(#using-bfg-to-migrate-repo)).
+Just tracking files does NOT convert them to lfs. They are part of history already, the only way to convert old files is to rewrite history (See [BFG](#using-bfg-to-migrate-repo)).
 
 Next we can try converting the latest version of history only to LFS. Since `*.bin` are currently tracked, we just need to add the files back after removing them. We will remove it from git without deleting the file (aka remove cache), and then add it back
 
