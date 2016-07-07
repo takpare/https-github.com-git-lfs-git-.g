@@ -190,25 +190,11 @@ README.md
 
 It's important to understand that tracking an LFS file does not remove it from a previous version of history. If you create a repo without LFS before, and put hundreds of MB in there, after all these steps, the old version still has all the large files in git, not in LFS. There is a discussion on how to rewrite history [here](https://github.com/github/git-lfs/issues/326), but the general consensus is that using [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner/releases) is the best path forward. See the next section on how to do this.
 
-## Using BFG to migrate repo ##
+## Using git-lfs-migrate to migrate repo ##
 
-# Don't use this, Use https://github.com/bozaro/git-lfs-migrate instead
+git-lfs-migrate can be used to filter binary files in an existing repo into git-lfs.  The resulting repo will be intact, though note that the SHAs will be different, see the documentation:
 
-1. Download and install `java >= 6`
-2. Download `bfg` [here](https://rtyley.github.io/bfg-repo-cleaner/#download) and put it somewhere
-3. `cd {git repo}`
-4. `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.dll' --no-blob-protection`
-5. `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.exe' --no-blob-protection`
-6. And so on, one pattern at a time. This is the current recommendation.
-7. `.gitattributes` are not generated through out history... So the best bet is to start tracking on the newest version only. This WILL go bad if you go to a previous version of history, branch off, commit, as LFS track files will not know to track at that point. I guess this would have to be fixed via ` git-filter-branch`
-8. `git lfs track '*.dll'` '*.exe'`
-10. For all the patterns:
-11. `git add .gitattributes`
-12. `git commit -m "Added .gitattributes for lfs tracking"`
-12. `git reflog expire --expire=now --all`
-13. `git gc --prune=now`
-13. Final step, `git push origin --all -f` and `git push origin --tags -f`. The `-f` is the important point of no return. This pushes a DIFFERENT repo now. Anyone else out there who has a clone, will have the broken clone, and will need to re-clone the new better lfs version.
-14. Don't be alarmed that `git status` shows all your files as different. This is a common git issue where the index is confused. It can be fixed by.... Well, not sure the best way. Throw away the clone, and clone again is one way, checkout initial commit and then go back is another (this only works if none of the affected files exist in the initial commit). Both of these are BAD solutions. The best way is _____?
+https://github.com/bozaro/git-lfs-migrate
 
 ## Pulling and cloning ##
 
