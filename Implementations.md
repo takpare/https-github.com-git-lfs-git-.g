@@ -12,4 +12,4 @@ Listed in alphabetical order:
 * [kzwang/node-git-lfs](https://github.com/kzwang/node-git-lfs) - A NodeJS implementation of Git LFS Server.
 * [meltingice/git-lfs-s3](https://github.com/meltingice/git-lfs-s3) - store large files in Amazon S3
 * [Microsoft Visual Studio Team Services](https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx) - Now supports git-lfs
-* [mgax/lfs](https://github.com/mgax/lfs) - a Python implementation of Git LFS Server that stores blobs on the filesystem.
+* [mgax/lfs](https://github.com/mgax/lfs) - a Python implementation of Git LFS Server that stores blobs on the filesystem (v1 legacy api only).
