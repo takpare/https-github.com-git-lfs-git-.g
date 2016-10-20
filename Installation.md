@@ -66,6 +66,21 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
 2. Run the windows installer 
 3. Start a command prompt/or git for windows prompt and run `git lfs install`
 
+### Docker Recipes ###
+
+For Debian Distros, you can use
+
+```dockerfile
+RUN build_deps="curl ca-certificates" && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ${build_deps} && \
+    curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git-lfs && \
+    git lfs install && \
+    DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove ${build_deps} && \
+    rm -r /var/lib/apt/lists/*
+```
+
 ## Other ##
 
 To install on any supported operating system, manually install git-lfs with no man pages.
