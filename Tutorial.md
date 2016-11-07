@@ -22,7 +22,7 @@ And add them to git
 
 Now we are going to decide that `*.bin` files are large files that we want git-lfs to track them. Tracking means that in subsequent commits, these files will now be LFS files. 
 
-*Note: This does NOT mean that versions of the files in previous commits will be converted (involving a process commonly known as rewriting history). This is a different process (See [BFG](#using-bfg-to-migrate-repo))*
+*Note: This does NOT mean that versions of the files in previous commits will be converted. That involves a process commonly known as "rewriting history" and is described in the [migration section](#migrating-existing-repository-data-to-lfs).*
 
 We do this by setting a `track` pattern, using the `git lfs track` command.
 
@@ -154,7 +154,7 @@ git commit -m "Now tracking bin files"
 git tag not_working
 ```
 
-Just tracking files does NOT convert them to lfs. They are part of history already, the only way to convert old files is to rewrite history (See [BFG](#using-bfg-to-migrate-repo)).
+Just tracking files does NOT convert them to lfs. They are part of history already, the only way to convert old files is to rewrite history (see the section about [migrating existing data](#migrating-existing-repository-data-to-lfs)).
 
 Next we can try converting the latest version of history only to LFS. Since `*.bin` are currently tracked, we just need to add the files back after removing them. We will remove it from git without deleting the file (aka remove cache), and then add it back
 
@@ -188,27 +188,56 @@ plain.txt
 README.md
 ```
 
-It's important to understand that tracking an LFS file does not remove it from a previous version of history. If you create a repo without LFS before, and put hundreds of MB in there, after all these steps, the old version still has all the large files in git, not in LFS. There is a discussion on how to rewrite history [here](https://github.com/github/git-lfs/issues/326), but the general consensus is that using [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner/releases) is the best path forward. See the next section on how to do this.
+It's important to understand that tracking an LFS file does not remove it from a previous version of history. If you create a repo without LFS before, and put hundreds of MB in there, after all these steps, the old version still has all the large files in git, not in LFS. There is a discussion on how to rewrite history [here](https://github.com/github/git-lfs/issues/326), but the general the best tool depends on the use case. See the next section for an introduction to some of the available tools.
 
-## ~~Using BFG to migrate repo~~ ##
+## Migrating existing repository data to LFS ##
 
-# Don't use this, Use https://github.com/bozaro/git-lfs-migrate instead
+While multiple tools exist, the [current recommendation](https://github.com/github/git-lfs/issues/1589) is to use [git-lfs-migrate](https://github.com/bozaro/git-lfs-migrate) as [BFG](https://github.com/rtyley/bfg-repo-cleaner) [writes .gitattributes files incorrectly if you're updating multiple file types](https://github.com/rtyley/bfg-repo-cleaner/issues/116).
 
-1. ~~Download and install `java >= 6`~~
-2. ~~Download `bfg` [here](https://rtyley.github.io/bfg-repo-cleaner/#download) and put it somewhere~~
-3. ~~`cd {git repo}`~~
-4. ~~`java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.dll' --no-blob-protection`~~
-5. ~~`java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.exe' --no-blob-protection`~~
-6. ~~And so on, one pattern at a time. This is the current recommendation.~~
-7. ~~`.gitattributes` are not generated through out history... So the best bet is to start tracking on the newest version only. This WILL go bad if you go to a previous version of history, branch off, commit, as LFS track files will not know to track at that point. I guess this would have to be fixed via ` git-filter-branch`~~
-8. ~~`git lfs track '*.dll'` '*.exe'`~~
-10. ~~For all the patterns:~~
-11. ~~`git add .gitattributes`~~
-12. ~~`git commit -m "Added .gitattributes for lfs tracking"`~~
-12. ~~`git reflog expire --expire=now --all`~~
-13. ~~`git gc --prune=now`~~
-13. ~~Final step, `git push origin --all -f` and `git push origin --tags -f`. The `-f` is the important point of no return. This pushes a DIFFERENT repo now. Anyone else out there who has a clone, will have the broken clone, and will need to re-clone the new better lfs version.~~
-14. ~~Don't be alarmed that `git status` shows all your files as different. This is a common git issue where the index is confused. It can be fixed by.... Well, not sure the best way. Throw away the clone, and clone again is one way, checkout initial commit and then go back is another (this only works if none of the affected files exist in the initial commit). Both of these are BAD solutions. The best way is _____?~~
+### Using git-lfs-migrate ###
+
+*Note: This currently is the preferred tool.*
+
+* Install Java 1.8 or later
+* Download the latest binaries from [here](https://github.com/bozaro/git-lfs-migrate/releases/latest)
+* Do a mirror clone of the repository to rewrite: `git clone --mirror git@github.com:bozaro/git-lfs-migrate.git`
+* Rewrite e.g. all `*.mp4` video files in the repository:
+
+```
+    java -jar git-lfs-migrate.jar \
+      -s git-lfs-migrate.git \
+      -d git-lfs-migrate-converted.git \
+      -g git@github.com:bozaro/git-lfs-migrate-converted.git \
+      "*.mp4"
+```
+
+* Push the converted repository as a new repository:
+
+```
+cd git-lfs-migrate-converted.git
+git fsck
+git push --mirror git@github.com:bozaro/git-lfs-migrate-converted.git
+```
+
+### Using BFG to migrate repo ###
+
+*Note: It currently is not recommended to use this tool (see above).*
+
+* Download and install `java >= 6`
+* Download `bfg` [here](https://rtyley.github.io/bfg-repo-cleaner/#download) and put it somewhere
+* `cd {git repo}`
+* `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.dll' --no-blob-protection`
+* `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.exe' --no-blob-protection`
+* And so on, one pattern at a time. This is the current recommendation.
+* `.gitattributes` are not generated through out history... So the best bet is to start tracking on the newest version only. This WILL go bad if you go to a previous version of history, branch off, commit, as LFS track files will not know to track at that point. I guess this would have to be fixed via ` git-filter-branch`
+* `git lfs track '*.dll'` '*.exe'`
+* For all the patterns:
+* `git add .gitattributes`
+* `git commit -m "Added .gitattributes for lfs tracking"`
+* `git reflog expire --expire=now --all`
+* `git gc --prune=now`
+* Final step, `git push origin --all -f` and `git push origin --tags -f`. The `-f` is the important point of no return. This pushes a DIFFERENT repo now. Anyone else out there who has a clone, will have the broken clone, and will need to re-clone the new better lfs version.
+* Don't be alarmed that `git status` shows all your files as different. This is a common git issue where the index is confused. It can be fixed by.... Well, not sure the best way. Throw away the clone, and clone again is one way, checkout initial commit and then go back is another (this only works if none of the affected files exist in the initial commit). Both of these are BAD solutions. The best way is _____?
 
 ## Pulling and cloning ##
 
