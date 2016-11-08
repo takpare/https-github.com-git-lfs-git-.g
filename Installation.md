@@ -19,7 +19,7 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
     - `echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list`
 
 1. `curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash`
-2. `apt-get install git-lfs`
+2. `sudo apt-get install git-lfs`
 3. `git lfs install`
 
 ### Mac OSX ###
@@ -34,30 +34,30 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
 
     - Recommended method for RHEL/CentOS 5 and 7 (not 6!)
 
-        1. Install the epel repo [link](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) (For CentOS it's just `yum install epel-release`)
-        2. `yum install git-lfs`
+        1. Install the epel repo [link](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) (For CentOS it's just `sudo yum install epel-release`)
+        2. `sudo yum install git-lfs`
 
     - Recommended method for RHEL/CentOS 6
 
         1. Install the IUS Community repo. `curl -s https://setup.ius.io/ | sudo bash` or [here](https://ius.io/GettingStarted/)
-        2. `yum install git2u`
+        2. `sudo yum install git2u`
 
     - You can also build git from source and install it. If you do that, you will need to either manually download the the git-lfs rpm and install it with `rpm -i --nodeps git-lfs*.rpm`, or just use the [Other](#Other) instructions. The only other advanced way to fool yum is to create and install a fake/real git rpm to satisfy the git >= 1.8.2 requirement. 
 
 - To install the git-lfs repo, run `curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash` from [here](https://packagecloud.io/github/git-lfs/install)
-- `yum install git-lfs`
+- `sudo yum install git-lfs`
 - `git lfs install`
 
 ### Ubuntu ###
 
 - Similar to Debian 7, Ubuntu 12 and similar Wheezy versions need to have a PPA repo installed to get git >= 1.8.2
 
-    1. `apt-get install python-software-properties` to install add-apt-repository
-    2. `add-apt-repository ppa:git-core/ppa`
+    1. `sudo apt-get install python-software-properties` to install add-apt-repository
+    2. `sudo add-apt-repository ppa:git-core/ppa`
     3. The curl script below calls apt-get update, if you aren't using it, don't forget to call `apt-get update` before installing git-lfs.
 
 1. `curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash`
-2. `apt-get install git-lfs`
+2. `sudo apt-get install git-lfs`
 3. `git lfs install`
 
 ### Windows ###
