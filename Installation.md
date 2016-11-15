@@ -44,9 +44,9 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
 
     - You can also build git from source and install it. If you do that, you will need to either manually download the the git-lfs rpm and install it with `rpm -i --nodeps git-lfs*.rpm`, or just use the [Other](#Other) instructions. The only other advanced way to fool yum is to create and install a fake/real git rpm to satisfy the git >= 1.8.2 requirement. 
 
-- To install the git-lfs repo, run `curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash` from [here](https://packagecloud.io/github/git-lfs/install)
-- `sudo yum install git-lfs`
-- `git lfs install`
+2. To install the git-lfs repo, run `curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash` from [here](https://packagecloud.io/github/git-lfs/install)
+3. `sudo yum install git-lfs`
+4. `git lfs install`
 
 ### Ubuntu ###
 
