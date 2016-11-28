@@ -39,9 +39,9 @@ Listing tracked paths
 
 To see the list of files being track by git-lfs, run `git lfs ls-files`. You will see that this list is currently empty. This is because technically the file isn't an lfs object until after you commit it. 
 
-Next, you need to add `.gitattributes` to your git repository. `git lfs track` stores the tracked files patterns in `.gitattributes`. This way when the repo is cloned, the track files patterns are preserved
+Next, you need to add `.gitattributes` to your git repository. `git lfs track` stores the tracked files patterns in `.gitattributes`. This way when the repo is cloned, the track files patterns are preserved. Since the bin files were added before Git LFS was tracking `*.bin` files, they need to be added again to the Git index:
 
-    git add .gitattributes
+    git add .gitattributes "*.bin"
 
 Now `git status` should look like this.
 
