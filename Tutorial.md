@@ -117,7 +117,7 @@ Since git-lfs only supports http/https, git will need to authenticate over http/
 - Windows - [wincred](https://help.github.com/articles/caching-your-github-password-in-git/#platform-windows) is the default built in for windows and should be good for most uses. There is another helper you can use called the [Git Credential Manager for Windows](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) aka wincred, the successor of the old winstore helper. It has some extra authentication support for GitHub and VSTS.
 - Store - The final option is to store your username and password using the [store](https://git-scm.com/docs/git-credential-store) helper. This should only be used when no other option is available (such as automatic private builds on trusted server) 
 
-## Adding git-lfs to a pre-exiting repo  ##
+## Adding git-lfs to a pre-existing repo  ##
 
 Let's create pretend repo to understand how converting to git-lfs works
 
