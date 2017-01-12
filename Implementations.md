@@ -4,6 +4,7 @@ Listed in alphabetical order:
 * [bozaro/git-as-svn](https://github.com/bozaro/git-as-svn) - subversion frontend for git repositories with embedded git-lfs server
 * [bozaro/git-lfs-java](https://github.com/bozaro/git-lfs-java/) - Git LFS Java API implementation (client, server, pointer manipulation)
 * [cbartz/git-lfs-swift-server](https://github.com/cbartz/git-lfs-swift-server) - Stores files in an OpenStack Swift cluster
+* [cbartz/git-lfs-swift-transfer-agent](https://github.com/cbartz/git-lfs-swift-transfer-agent) - Implements the custom transfer type swift, which is capable of handling large objects (which exceed the default maximum single object size)
 * [cloudmazing/lfs-server-go](https://github.com/cloudmazing/lfs-server-go) - S3/local file support, Cassandra/redis/boltdb metadata store
 * [Gitblit](http://gitblit.com/) - Open-source pure Java Git solution with embedded Git-LFS support
 * [GitLab](https://gitlab.com) - Has LFS [support](https://about.gitlab.com/2015/11/23/announcing-git-lfs-support-in-gitlab/) in the GitLab.com, GitLab Community Edition, and GitLab Enterprise Edition
