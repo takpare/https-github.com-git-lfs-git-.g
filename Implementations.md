@@ -7,6 +7,7 @@ Listed in alphabetical order:
 * [cbartz/git-lfs-swift-transfer-agent](https://github.com/cbartz/git-lfs-swift-transfer-agent) - Implements the custom transfer type swift, which is capable of handling large objects (which exceed the default maximum single object size)
 * [cloudmazing/lfs-server-go](https://github.com/cloudmazing/lfs-server-go) - S3/local file support, Cassandra/redis/boltdb metadata store
 * [Gitblit](http://gitblit.com/) - Open-source pure Java Git solution with embedded Git-LFS support
+* [GitBucket](https://github.com/gitbucket/gitbucket/) - Open-source Git platform powered by Scala with GitLFS support on the local file system
 * [GitLab](https://gitlab.com) - Has LFS [support](https://about.gitlab.com/2015/11/23/announcing-git-lfs-support-in-gitlab/) in the GitLab.com, GitLab Community Edition, and GitLab Enterprise Edition
 * [GitHub](https://github.com/) - Supports git-lfs for files up to 2 GiB \([pricing](https://github.com/pricing)\)
 * [github/lfs-test-server](https://github.com/github/lfs-test-server) - reference server implementation
