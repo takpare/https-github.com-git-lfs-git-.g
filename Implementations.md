@@ -1,4 +1,5 @@
 Listed in alphabetical order:
+* [artemkin/git-lfs-server](https://github.com/artemkin/git-lfs-server) - Git LFS server with PAM authentication
 * [Artifactory](http://www.jfrog.com/artifactory/features/#addon-git-lfs) - store large files in a dedicated [Binary Repository Manager](https://en.wikipedia.org/wiki/Binary_repository_manager)
 * [Bitbucket Server](https://bitbucket.org/product/server) - Supports Git LFS in version [4.3](https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+4.3+release+notes) and later
 * [bozaro/git-as-svn](https://github.com/bozaro/git-as-svn) - subversion frontend for git repositories with embedded git-lfs server
