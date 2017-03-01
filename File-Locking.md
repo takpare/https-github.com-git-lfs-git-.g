@@ -1,5 +1,3 @@
-# File Locking
-
 Git LFS v2.0.0 includes an early release of File Locking. File Locking lets
 developers lock files they are updating to prevent other users from updating
 them at the same time. Concurrent edits in Git repositories will lead to merge
