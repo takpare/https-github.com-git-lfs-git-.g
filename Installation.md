@@ -52,7 +52,7 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
 
 - Similar to Debian 7, Ubuntu 12 and similar Wheezy versions need to have a PPA repo installed to get git >= 1.8.2
 
-    1. `sudo apt-get install python-software-properties` to install add-apt-repository
+    1. `sudo apt-get install software-properties-common` to install add-apt-repository (or `sudo apt-get install python-software-properties` if you are on Ubuntu <= 12.04)
     2. `sudo add-apt-repository ppa:git-core/ppa`
     3. The curl script below calls apt-get update, if you aren't using it, don't forget to call `apt-get update` before installing git-lfs.
 
