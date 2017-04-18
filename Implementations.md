@@ -18,4 +18,4 @@ Listed in alphabetical order:
 * [meltingice/git-lfs-s3](https://github.com/meltingice/git-lfs-s3) - store large files in Amazon S3
 * [Microsoft Visual Studio Team Services](https://www.visualstudio.com/team-services/) - git-lfs supported in all VSTS hosted accounts and TFS 2015+
 * [mgax/lfs](https://github.com/mgax/lfs) - a Python implementation of Git LFS Server that stores blobs on the filesystem (v1 legacy api only).
-* [Sonatype Nexus](https://www.sonatype.com/get-nexus-sonatype) - The World's Only Component Repository with **Universal Format Support for Free** - [git-lfs support in version 3.3 and above](https://books.sonatype.com/nexus-book/reference3/gitlfs.html)
+* [Nexus Repository Manager](https://books.sonatype.com/nexus-book/reference3/gitlfs.html) - a repository manager with free, full-featured GIT LFS functionality.
