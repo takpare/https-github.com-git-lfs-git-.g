@@ -19,3 +19,4 @@ Listed in alphabetical order:
 * [Microsoft Visual Studio Team Services](https://www.visualstudio.com/team-services/) - git-lfs supported in all VSTS hosted accounts and TFS 2015+
 * [mgax/lfs](https://github.com/mgax/lfs) - a Python implementation of Git LFS Server that stores blobs on the filesystem (v1 legacy api only).
 * [Nexus Repository Manager](https://books.sonatype.com/nexus-book/reference3/gitlfs.html) - a repository manager with free, full-featured Git LFS functionality.
+* [RhodeCode VCSServer](https://code.rhodecode.com/rhodecode-vcsserver) - git-lfs v2.0+ server written in Python. With streaming uploads and verification api.
