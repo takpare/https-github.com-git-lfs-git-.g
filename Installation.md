@@ -1,6 +1,6 @@
 ## Requirements ##
 
-- git >= 1.8.2
+- `git >= 1.8.2`
 
 ## Installing ##
 
@@ -14,7 +14,7 @@ An additional option of `--skip-smudge` can be added to skip automatic downloadi
 
 ### Debian ###
 
-- Debian 7 Wheezy and similar needs to have the backports repo installed to get git >= 1.8.2
+- Debian 7 Wheezy and similar needs to have the backports repo installed to get `git >= 1.8.2`
 
     - `echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list`
 
