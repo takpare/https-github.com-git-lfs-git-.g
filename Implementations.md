@@ -1,3 +1,5 @@
+TODO: split paid-commercial, free-commercial, open-source by categories
+
 Listed in alphabetical order:
 * [artemkin/git-lfs-server](https://github.com/artemkin/git-lfs-server) - Git LFS server with PAM authentication
 * [Artifactory](http://www.jfrog.com/artifactory/features/#addon-git-lfs) - store large files in a dedicated [Binary Repository Manager](https://en.wikipedia.org/wiki/Binary_repository_manager)
