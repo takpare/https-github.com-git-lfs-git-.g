@@ -59,7 +59,7 @@ Changes to be committed:
 
 Finally, commit the new files
 
-    git commit -m "Added files"
+    git commit -m "Add files"
 
 Now, when you run `git lfs ls-files`, you will see the list of tracked files
 
@@ -130,18 +130,18 @@ git tag one
 echo hi > plain.txt
 ls > foo.bin
 git add plain.txt foo.bin
-git commit -m "Added some files"
+git commit -m "Add some files"
 git tag two
 echo bye > plain.txt
 ls > bar.bin
 ls > foo.bin
 git add plain.txt foo.bin bar.bin
-git commit -m "Updated and added another file"
+git commit -m "Update and add another file"
 git tag three
 echo bye >> plain.txt
 ls > foo.bin
 git add plain.txt foo.bin
-git commit -m "Updated some more"
+git commit -m "Update some more"
 git tag four
 ```
 
@@ -150,7 +150,7 @@ Now lets decide we want `*.bin` files to be turned into lfs objects.
 ```
 git lfs track '*.bin'
 git add .gitattributes
-git commit -m "Now tracking bin files"
+git commit -m "Track .bin files"
 git tag not_working
 ```
 
@@ -233,7 +233,7 @@ git push --mirror git@github.com:bozaro/git-lfs-migrate-converted.git
 * `git lfs track '*.dll'` '*.exe'`
 * For all the patterns:
 * `git add .gitattributes`
-* `git commit -m "Added .gitattributes for lfs tracking"`
+* `git commit -m "Add .gitattributes for lfs tracking"`
 * `git reflog expire --expire=now --all`
 * `git gc --prune=now`
 * Final step, `git push origin --all -f` and `git push origin --tags -f`. The `-f` is the important point of no return. This pushes a DIFFERENT repo now. Anyone else out there who has a clone, will have the broken clone, and will need to re-clone the new better lfs version.
