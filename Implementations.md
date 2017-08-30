@@ -1,10 +1,7 @@
-**TODO:** split paid-commercial, free-commercial, open-source by categories
+Listed alphabatically
 
-Listed in alphabetical order:
+# Open Source
 * [artemkin/git-lfs-server](https://github.com/artemkin/git-lfs-server) - Git LFS server with PAM authentication
-* [Artifactory](http://www.jfrog.com/artifactory/features/#addon-git-lfs) - store large files in a dedicated [Binary Repository Manager](https://en.wikipedia.org/wiki/Binary_repository_manager)
-* [Bitbucket Cloud](https://bitbucket.org/product/) - Supports git-lfs \([pricing](https://bitbucket.org/product/pricing?tab=host-in-the-cloud)\)
-* [Bitbucket Server](https://bitbucket.org/product/server) - Supports Git LFS in version [4.3](https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+4.3+release+notes) and later
 * [bozaro/git-as-svn](https://github.com/bozaro/git-as-svn) - subversion frontend for git repositories with embedded git-lfs server
 * [bozaro/git-lfs-java](https://github.com/bozaro/git-lfs-java/) - Git LFS Java API implementation (client, server, pointer manipulation)
 * [cbartz/git-lfs-swift-server](https://github.com/cbartz/git-lfs-swift-server) - Stores files in an OpenStack Swift cluster
@@ -16,9 +13,18 @@ Listed in alphabetical order:
 * [GitHub.com](https://github.com/) - Supports git-lfs for files up to 2 GiB \([pricing](https://github.com/pricing)\)
 * [GitHub Enterprise](https://enterprise.github.com) - Supports git-lfs on your on-premises GitHub system.
 * [github/lfs-test-server](https://github.com/github/lfs-test-server) - reference server implementation
-* [joerg/stash-git-lfs](https://github.com/joerg/stash-git-lfs) - Early version of a Plugin for Atlassian Stash (recently rebranded as BitBucket Server)
 * [meltingice/git-lfs-s3](https://github.com/meltingice/git-lfs-s3) - store large files in Amazon S3
-* [Microsoft Visual Studio Team Services](https://www.visualstudio.com/team-services/) - git-lfs supported in all VSTS hosted accounts and TFS 2015+
 * [mgax/lfs](https://github.com/mgax/lfs) - a Python implementation of Git LFS Server that stores blobs on the filesystem (v1 legacy api only).
+
+# Paid Commercial (some with free versions for small teams)
+* [Artifactory](http://www.jfrog.com/artifactory/features/#addon-git-lfs) - store large files in a dedicated [Binary Repository Manager](https://en.wikipedia.org/wiki/Binary_repository_manager)
+* [Bitbucket Cloud](https://bitbucket.org/product/) - Supports git-lfs \([pricing](https://bitbucket.org/product/pricing?tab=host-in-the-cloud)\)
+* [Bitbucket Server](https://bitbucket.org/product/server) - Supports Git LFS in version [4.3](https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+4.3+release+notes) and later
+* [Microsoft Visual Studio Team Services](https://www.visualstudio.com/team-services/) - git-lfs supported in all VSTS hosted accounts and TFS 2015+
+
+# Free Commercial
+* [joerg/stash-git-lfs](https://github.com/joerg/stash-git-lfs) - Early version of a Plugin for Atlassian Stash (recently rebranded as BitBucket Server)
 * [Nexus Repository Manager](https://books.sonatype.com/nexus-book/reference3/gitlfs.html) - a repository manager with free, full-featured Git LFS functionality.
-* [RhodeCode VCSServer](https://code.rhodecode.com/rhodecode-vcsserver) - git-lfs v2.0+ server written in Python. With streaming uploads and verification api.
+* [RhodeCode VCSServer](https://code.rhodecode.com/rhodecode-vcsserver) - git-lfs v2.0+ server written in Python. With streaming uploads and verification api. 
+
+
