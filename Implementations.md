@@ -1,5 +1,3 @@
-Listed alphabatically
-
 # Open Source
 * [artemkin/git-lfs-server](https://github.com/artemkin/git-lfs-server) - Git LFS server with PAM authentication
 * [bozaro/git-as-svn](https://github.com/bozaro/git-as-svn) - subversion frontend for git repositories with embedded git-lfs server
