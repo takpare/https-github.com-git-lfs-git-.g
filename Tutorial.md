@@ -192,52 +192,28 @@ It's important to understand that tracking an LFS file does not remove it from a
 
 ## Migrating existing repository data to LFS ##
 
-While multiple tools exist, the [current recommendation](https://github.com/github/git-lfs/issues/1589) is to use [git-lfs-migrate](https://github.com/bozaro/git-lfs-migrate) as [BFG](https://github.com/rtyley/bfg-repo-cleaner) [writes .gitattributes files incorrectly if you're updating multiple file types](https://github.com/rtyley/bfg-repo-cleaner/issues/116).
+Sometimes files end up committed within your repository when they should have been committed with LFS. This can be accidental, or can come up when converting an existing Git repository to use Git LFS. To make this possible, Git LFS ships with a `git lfs migrate` command that allows for such migrations:
 
-### Using git-lfs-migrate ###
+### Using `git lfs migrate` ###
 
-*Note: This currently is the preferred tool.*
-
-* Install Java 1.8 or later
-* Download the latest binaries from [here](https://github.com/bozaro/git-lfs-migrate/releases/latest)
-* Do a mirror clone of the repository to rewrite: `git clone --mirror git@github.com:bozaro/git-lfs-migrate.git`
-* Rewrite e.g. all `*.mp4` video files in the repository:
+* Install Git LFS v2.2.1 (or later)
+* Rewrite e.g. all `*.mp4` video files on the current branch that are not present on a remote:
 
 ```
-    java -jar git-lfs-migrate.jar \
-      -s git-lfs-migrate.git \
-      -d git-lfs-migrate-converted.git \
-      -g git@github.com:bozaro/git-lfs-migrate-converted.git \
-      "*.mp4"
+git lfs migrate import --include="*.mp4"
+```
+
+* Alternatively, rewrite all `*.mp4` video files on a given branch(es) regardless of whether they are present on a remote (may require a force-push):
+
+```
+git lfs migrate import --include="*.mp4" --include-ref=refs/heads/master --include-ref=refs/heads/my-feature
 ```
 
 * Push the converted repository as a new repository:
 
 ```
-cd git-lfs-migrate-converted.git
-git fsck
-git push --mirror git@github.com:bozaro/git-lfs-migrate-converted.git
+git push
 ```
-
-### Using BFG to migrate repo ###
-
-*Note: It currently is not recommended to use this tool (see above).*
-
-* Download and install `java >= 6`
-* Download `bfg` [here](https://rtyley.github.io/bfg-repo-cleaner/#download) and put it somewhere
-* `cd {git repo}`
-* `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.dll' --no-blob-protection`
-* `java -jar {bfg_dir}/bfg-1.12.8.jar --convert-to-git-lfs '*.exe' --no-blob-protection`
-* And so on, one pattern at a time. This is the current recommendation.
-* `.gitattributes` are not generated through out history... So the best bet is to start tracking on the newest version only. This WILL go bad if you go to a previous version of history, branch off, commit, as LFS track files will not know to track at that point. I guess this would have to be fixed via ` git-filter-branch`
-* `git lfs track '*.dll'` '*.exe'`
-* For all the patterns:
-* `git add .gitattributes`
-* `git commit -m "Add .gitattributes for lfs tracking"`
-* `git reflog expire --expire=now --all`
-* `git gc --prune=now`
-* Final step, `git push origin --all -f` and `git push origin --tags -f`. The `-f` is the important point of no return. This pushes a DIFFERENT repo now. Anyone else out there who has a clone, will have the broken clone, and will need to re-clone the new better lfs version.
-* Don't be alarmed that `git status` shows all your files as different. This is a common git issue where the index is confused. It can be fixed by.... Well, not sure the best way. Throw away the clone, and clone again is one way, checkout initial commit and then go back is another (this only works if none of the affected files exist in the initial commit). Both of these are BAD solutions. The best way is _____?
 
 ## Pulling and cloning ##
 
