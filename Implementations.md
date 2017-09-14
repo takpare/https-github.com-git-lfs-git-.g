@@ -8,13 +8,13 @@
 * [Gitblit](http://gitblit.com/) - Open-source pure Java Git solution with embedded Git-LFS support
 * [GitBucket](https://github.com/gitbucket/gitbucket/) - Open-source Git platform powered by Scala with GitLFS support on the local file system
 * [GitLab](https://gitlab.com) - Has LFS [support](https://about.gitlab.com/2015/11/23/announcing-git-lfs-support-in-gitlab/) in the GitLab.com, GitLab Community Edition, and GitLab Enterprise Edition
-* [GitHub.com](https://github.com/) - Supports git-lfs for files up to 2 GiB \([pricing](https://github.com/pricing)\)
-* [GitHub Enterprise](https://enterprise.github.com) - Supports git-lfs on your on-premises GitHub system.
 * [github/lfs-test-server](https://github.com/github/lfs-test-server) - reference server implementation
 * [meltingice/git-lfs-s3](https://github.com/meltingice/git-lfs-s3) - store large files in Amazon S3
 * [mgax/lfs](https://github.com/mgax/lfs) - a Python implementation of Git LFS Server that stores blobs on the filesystem (v1 legacy api only).
 
 # Paid Commercial (some with free versions for small teams)
+* [GitHub.com](https://github.com/) - Supports git-lfs for files up to 2 GiB \([pricing](https://github.com/pricing)\)
+* [GitHub Enterprise](https://enterprise.github.com) - Supports git-lfs on your on-premises GitHub system.
 * [Artifactory](http://www.jfrog.com/artifactory/features/#addon-git-lfs) - store large files in a dedicated [Binary Repository Manager](https://en.wikipedia.org/wiki/Binary_repository_manager)
 * [Bitbucket Cloud](https://bitbucket.org/product/) - Supports git-lfs \([pricing](https://bitbucket.org/product/pricing?tab=host-in-the-cloud)\)
 * [Bitbucket Server](https://bitbucket.org/product/server) - Supports Git LFS in version [4.3](https://confluence.atlassian.com/display/BitbucketServer/Bitbucket+Server+4.3+release+notes) and later
